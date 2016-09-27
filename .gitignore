@@ -1,0 +1,5 @@
+#
+*.o
+*.exe
+chapter*/*.o
+chapter*/*.exe
