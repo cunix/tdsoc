@@ -21,11 +21,16 @@ typedef struct BiThrNode /* 二叉线索存储结点结构 */
     PointerTag RTag; /* 左右标志 */
 } BiThrNode, *BiThrTree;
 TElemType Nil='#'; /* 字符型以空格符为空 */
+
+
+
+
 Status visit(TElemType e)
 {
     printf("%c ",e);
     return OK;
 }
+
 /* 按前序输入二叉线索树中结点的值,构造二叉线索树 T */
 /* 0(整型)/空格(字符型)表示空结点 */
 Status CreateBiThrTree(BiThrTree *T)

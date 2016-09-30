@@ -14,6 +14,7 @@ typedef int Status; /* Status 是函数的类型,其值是函数结果状态代码，如 OK 等 */
 int index=1;
 typedef char String[24]; /* 0 号单元存放串的长度 */
 String str;
+
 Status StrAssign(String T,char *chars)
 {
     int i;
@@ -27,25 +28,32 @@ Status StrAssign(String T,char *chars)
         return OK;
     }
 }
+
 /* ************************************************ */
 typedef char TElemType;
 TElemType Nil=' '; /* 字符型以空格符为空 */
-Status visit(TElemType e)
-{
-    printf("%c ",e);
-    return OK;
-}
+
+
+
 typedef struct BiTNode /* 结点结构 */
 {
     TElemType data; /* 结点数据 */
     struct BiTNode *lchild,*rchild; /* 左右孩子指针 */
 } BiTNode,*BiTree;
+
+Status visit(TElemType e)
+{
+    printf("%c ",e);
+    return OK;
+}
+
 /* 构造空二叉树 T */
 Status InitBiTree(BiTree *T)
 {
     *T=NULL;
     return OK;
 }
+
 /* 初始条件: 二叉树 T 存在。操作结果: 销毁二叉树 T */
 void DestroyBiTree(BiTree *T)
 {
@@ -59,6 +67,7 @@ void DestroyBiTree(BiTree *T)
         *T=NULL; /* 空指针赋 0 */
     }
 }
+
 /* 按前序输入二叉树中结点的值（一个字符） */
 /* #表示空树，构造二叉链表表示二叉树 T。 */
 void CreateBiTree(BiTree *T)
@@ -78,6 +87,7 @@ void CreateBiTree(BiTree *T)
         CreateBiTree(&(*T)->rchild); /* 构造右子树 */
     }
 }
+
 /* 初始条件: 二叉树 T 存在 */
 /* 操作结果: 若 T 为空二叉树,则返回 TRUE,否则 FALSE */
 Status BiTreeEmpty(BiTree T)
@@ -87,6 +97,7 @@ Status BiTreeEmpty(BiTree T)
     else
         return TRUE;
 }
+
 #define ClearBiTree DestroyBiTree
 /* 初始条件: 二叉树 T 存在。操作结果: 返回 T 的深度 */
 int BiTreeDepth(BiTree T)
@@ -104,6 +115,7 @@ int BiTreeDepth(BiTree T)
         j=0;
     return i>j?i+1:j+1;
 }
+
 /* 初始条件: 二叉树 T 存在。操作结果: 返回 T 的根 */
 TElemType Root(BiTree T)
 {
@@ -112,18 +124,21 @@ TElemType Root(BiTree T)
     else
         return T->data;
 }
+
 /* 初始条件: 二叉树 T 存在， p 指向 T 中某个结点 */
 /* 操作结果: 返回 p 所指结点的值 */
 TElemType Value(BiTree p)
 {
     return p->data;
 }
+
 /* 给 p 所指结点赋值为 value */
 void Assign(BiTree p,TElemType value)
 {
     p->data=value;
 }
-/* 初始条件: 二叉树 T 存在 */
+
+/*-------------------------------------------------BiTree Traverse Start----------------------------------------------------*/
 /* 操作结果: 前序递归遍历 T */
 void PreOrderTraverse(BiTree T)
 {
@@ -133,7 +148,7 @@ void PreOrderTraverse(BiTree T)
     PreOrderTraverse(T->lchild); /* 再先序遍历左子树 */
     PreOrderTraverse(T->rchild); /* 最后先序遍历右子树 */
 }
-/* 初始条件: 二叉树 T 存在 */
+
 /* 操作结果: 中序递归遍历 T */
 void InOrderTraverse(BiTree T)
 {
@@ -143,7 +158,7 @@ void InOrderTraverse(BiTree T)
     printf("%c",T->data);/* 显示结点数据，可以更改为其它对结点操作 */
     InOrderTraverse(T->rchild); /* 最后中序遍历右子树 */
 }
-/* 初始条件: 二叉树 T 存在 */
+
 /* 操作结果: 后序递归遍历 T */
 void PostOrderTraverse(BiTree T)
 {
@@ -153,6 +168,9 @@ void PostOrderTraverse(BiTree T)
     PostOrderTraverse(T->rchild); /* 再后序遍历右子树 */
     printf("%c",T->data);/* 显示结点数据，可以更改为其它对结点操作 */
 }
+/*-------------------------------------------------BiTree Traverse End----------------------------------------------------*/
+
+
 int main()
 {
     int i;

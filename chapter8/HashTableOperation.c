@@ -19,6 +19,7 @@ typedef struct
     int count; /* 当前数据元素个数 */
 } HashTable;
 int m=0; /* 散列表表长，全局变量 */
+
 /* 初始化散列表 */
 Status InitHashTable(HashTable *H)
 {
