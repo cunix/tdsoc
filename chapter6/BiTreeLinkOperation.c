@@ -169,7 +169,6 @@ void PostOrderTraverse(BiTree T)
 }
 /*-------------------------------------------------BiTree Traverse End----------------------------------------------------*/
 
-
 int main()
 {
     int i;

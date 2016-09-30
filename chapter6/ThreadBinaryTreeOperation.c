@@ -51,6 +51,7 @@ Status CreateBiThrTree(BiThrTree *T)
     }
     return OK;
 }
+
 BiThrTree pre; /* 全局变量,始终指向刚刚访问过的结点 */
 /* 中序遍历进行中序线索化 */
 void InThreading(BiThrTree p)

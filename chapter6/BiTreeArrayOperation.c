@@ -58,7 +58,6 @@ Status CreateBiTree(SqBiTree T)
 }
 
 
-
 #define ClearBiTree InitBiTree /* 在顺序存储结构中，两函数完全一样 */
 /* 初始条件: 二叉树 T 存在 */
 /* 操作结果: 若 T 为空二叉树,则返回 TRUE,否则 FALSE */
