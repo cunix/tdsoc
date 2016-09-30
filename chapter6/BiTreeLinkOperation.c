@@ -88,7 +88,6 @@ void CreateBiTree(BiTree *T)
     }
 }
 
-/* 初始条件: 二叉树 T 存在 */
 /* 操作结果: 若 T 为空二叉树,则返回 TRUE,否则 FALSE */
 Status BiTreeEmpty(BiTree T)
 {

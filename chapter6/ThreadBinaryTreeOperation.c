@@ -22,9 +22,6 @@ typedef struct BiThrNode /* 二叉线索存储结点结构 */
 } BiThrNode, *BiThrTree;
 TElemType Nil='#'; /* 字符型以空格符为空 */
 
-
-
-
 Status visit(TElemType e)
 {
     printf("%c ",e);
@@ -118,6 +115,7 @@ Status InOrderTraverse_Thr(BiThrTree T)
     }
     return OK;
 }
+
 int main()
 {
     BiThrTree H,T;
