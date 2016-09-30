@@ -12,6 +12,7 @@
 typedef int Status; /* Status 是函数的类型,其值是函数结果状态代码，如 OK 等 */
 typedef int TElemType; /* 树结点的数据类型，目前暂定为整型 */
 typedef TElemType SqBiTree[MAX_TREE_SIZE]; /* 0 号单元存储根结点 */
+
 typedef struct
 {
     int level,order; /* 结点的层,本层序号(按满二叉树计算) */
@@ -190,7 +191,7 @@ void PreTraverse(SqBiTree T,int e)
         PreTraverse(T,2*e+2);
 }
 
-/* 初始条件: 二叉树存在 */
+
 /* 操作结果: 先序遍历 T。 */
 Status PreOrderTraverse(SqBiTree T)
 {
@@ -210,7 +211,7 @@ void InTraverse(SqBiTree T,int e)
         InTraverse(T,2*e+2);
 }
 
-/* 初始条件: 二叉树存在 */
+
 /* 操作结果: 中序遍历 T。 */
 Status InOrderTraverse(SqBiTree T)
 {
@@ -230,7 +231,6 @@ void PostTraverse(SqBiTree T,int e)
     visit(T[e]);
 }
 
-/* 初始条件: 二叉树 T 存在 */
 /* 操作结果: 后序遍历 T。 */
 Status PostOrderTraverse(SqBiTree T)
 {

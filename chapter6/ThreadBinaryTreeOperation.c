@@ -73,6 +73,7 @@ void InThreading(BiThrTree p)
         InThreading(p->rchild); /* 递归右子树线索化 */
     }
 }
+
 /* 中序遍历二叉树 T,并将其中序线索化,Thrt 指向头结点 */
 Status InOrderThreading(BiThrTree *Thrt,BiThrTree T)
 {
@@ -95,6 +96,7 @@ Status InOrderThreading(BiThrTree *Thrt,BiThrTree T)
     }
     return OK;
 }
+
 /* 中序遍历二叉线索树 T(头结点)的非递归算法 */
 Status InOrderTraverse_Thr(BiThrTree T)
 {

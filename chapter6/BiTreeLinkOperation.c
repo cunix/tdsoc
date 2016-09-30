@@ -31,9 +31,8 @@ Status StrAssign(String T,char *chars)
 
 /* ************************************************ */
 typedef char TElemType;
+
 TElemType Nil=' '; /* 字符型以空格符为空 */
-
-
 
 typedef struct BiTNode /* 结点结构 */
 {
