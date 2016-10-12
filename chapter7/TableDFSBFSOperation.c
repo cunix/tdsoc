@@ -11,29 +11,29 @@
 #define MAXEDGE 15
 #define MAXVEX 9
 #define INFINITY 65535
-typedef int Status; /* Status 是函数的类型,其值是函数结果状态代码,如 OK 等 */
-typedef int Boolean; /* Boolean 是布尔类型,其值是 TRUE 或 FALSE */
+typedef int Status;      /* Status 是函数的类型,其值是函数结果状态代码,如 OK 等 */
+typedef int Boolean;     /* Boolean 是布尔类型,其值是 TRUE 或 FALSE */
 typedef char VertexType; /* 顶点类型应由用户定义 */
-typedef int EdgeType; /* 边上的权值类型应由用户定义 */
+typedef int EdgeType;    /* 边上的权值类型应由用户定义 */
 /* 邻接矩阵结构 */
 typedef struct
 {
-    VertexType vexs[MAXVEX]; /* 顶点表 */
+    VertexType vexs[MAXVEX];     /* 顶点表 */
     EdgeType arc[MAXVEX][MAXVEX];/* 邻接矩阵,可看作边表 */
-    int numVertexes, numEdges; /* 图中当前的顶点数和边数 */
+    int numVertexes, numEdges;   /* 图中当前的顶点数和边数 */
 } MGraph;
 /* 邻接表结构****************** */
-typedef struct EdgeNode /* 边表结点 */
+typedef struct EdgeNode    /* 边表结点 */
 {
-    int adjvex; /* 邻接点域,存储该顶点对应的下标 */
-    int weight; /* 用于存储权值,对于非网图可以不需要 */
+    int adjvex;            /* 邻接点域,存储该顶点对应的下标 */
+    int weight;            /* 用于存储权值,对于非网图可以不需要 */
     struct EdgeNode *next; /* 链域,指向下一个邻接点 */
 } EdgeNode;
 typedef struct VertexNode /* 顶点表结点 */
 {
-    int in; /* 顶点入度 */
-    char data; /* 顶点域,存储顶点信息 */
-    EdgeNode *firstedge;/* 边表头指针 */
+    int in;               /* 顶点入度 */
+    char data;            /* 顶点域,存储顶点信息 */
+    EdgeNode *firstedge;  /* 边表头指针 */
 } VertexNode, AdjList[MAXVEX];
 typedef struct
 {
@@ -106,8 +106,8 @@ void CreateMGraph(MGraph *G)
         {
             G->arc[i][j]=0;
         }
-    } G
-    ->arc[0][1]=1;
+    }
+    G->arc[0][1]=1;
     G->arc[0][5]=1;
     G->arc[1][2]=1;
     G->arc[1][8]=1;
@@ -138,23 +138,22 @@ void CreateALGraph(MGraph G,GraphAdjList *GL)
     *GL = (GraphAdjList)malloc(sizeof(graphAdjList));
     (*GL)->numVertexes=G.numVertexes;
     (*GL)->numEdges=G.numEdges;
-    for(i= 0; i <G.numVertexes; i++) /* 读入顶点信息,建立顶点表 */
+    for(i= 0; i <G.numVertexes; i++)      /* 读入顶点信息,建立顶点表 */
     {
         (*GL)->adjList[i].in=0;
         (*GL)->adjList[i].data=G.vexs[i];
         (*GL)->adjList[i].firstedge=NULL; /* 将边表置为空表 */
     }
-    for(i=0; i<G.numVertexes; i++) /* 建立边表 */
+    for(i=0; i<G.numVertexes; i++)        /* 建立边表 */
     {
         for(j=0; j<G.numVertexes; j++)
         {
             if (G.arc[i][j]==1)
             {
                 e=(EdgeNode *)malloc(sizeof(EdgeNode));
-                e->adjvex=j; /* 邻接序号为 j */
-                e->next=(*GL)->adjList[i].firstedge; /* 将当前顶点上的指向的结点指针
-赋值给 e */
-                (*GL)->adjList[i].firstedge=e; /* 将当前顶点的指针指向 e */
+                e->adjvex=j;                         /* 邻接序号为 j */
+                e->next=(*GL)->adjList[i].firstedge; /* 将当前顶点上的指向的结点指针赋值给 e */
+                (*GL)->adjList[i].firstedge=e;       /* 将当前顶点的指针指向 e */
                 (*GL)->adjList[j].in++;
             }
         }
@@ -171,7 +170,7 @@ void DFS(GraphAdjList GL, int i)
     while(p)
     {
         if(!visited[p->adjvex])
-            DFS(GL, p->adjvex);/* 对为访问的邻接顶点递归调用 */
+            DFS(GL, p->adjvex);       /* 对为访问的邻接顶点递归调用 */
         p = p->next;
     }
 }
@@ -182,7 +181,7 @@ void DFSTraverse(GraphAdjList GL)
     for(i = 0; i < GL->numVertexes; i++)
         visited[i] = FALSE; /* 初始所有顶点状态都是未访问过状态 */
     for(i = 0; i < GL->numVertexes; i++)
-        if(!visited[i]) /* 对未访问过的顶点调用 DFS,若是连通图,只会执行一次 */
+        if(!visited[i])     /* 对未访问过的顶点调用 DFS,若是连通图,只会执行一次 */
             DFS(GL, i);
 }
 /* 邻接表的广度遍历算法 */
@@ -199,26 +198,27 @@ void BFSTraverse(GraphAdjList GL)
         if (!visited[i])
         {
             visited[i]=TRUE;
-            printf("%c ",GL->adjList[i].data);/* 打印顶点,也可以其它操作 */
+            printf("%c ",GL->adjList[i].data);   /* 打印顶点,也可以其它操作 */
             EnQueue(&Q,i);
             while(!QueueEmpty(Q))
             {
                 DeQueue(&Q,&i);
-                p = GL->adjList[i].firstedge; /* 找到当前顶点的边表链表头指针 */
+                p = GL->adjList[i].firstedge;    /* 找到当前顶点的边表链表头指针 */
                 while(p)
                 {
-                    if(!visited[p->adjvex]) /* 若此顶点未被访问 */
+                    if(!visited[p->adjvex])      /* 若此顶点未被访问 */
                     {
                         visited[p->adjvex]=TRUE;
                         printf("%c ",GL->adjList[p->adjvex].data);
-                        EnQueue(&Q,p->adjvex); /* 将此顶点入队列 */
+                        EnQueue(&Q,p->adjvex);   /* 将此顶点入队列 */
                     }
-                    p = p->next; /* 指针指向下一个邻接点 */
+                    p = p->next;                 /* 指针指向下一个邻接点 */
                 }
             }
         }
     }
 }
+
 int main(void)
 {
     MGraph G;

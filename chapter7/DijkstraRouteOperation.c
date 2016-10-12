@@ -10,6 +10,7 @@
 #define MAXEDGE 20
 #define MAXVEX 20
 #define INFINITY 65535
+/*****************************************************************************************/
 typedef int Status; /* Status 是函数的类型,其值是函数结果状态代码，如 OK 等 */
 typedef struct
 {
@@ -39,8 +40,8 @@ void CreateMGraph(MGraph *G)
             else
                 G->arc[i][j] = G->arc[j][i] = INFINITY;
         }
-    } G
-    ->arc[0][1]=1;
+    }
+    G->arc[0][1]=1;
     G->arc[0][2]=5;
     G->arc[1][2]=3;
     G->arc[1][3]=7;

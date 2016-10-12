@@ -7,10 +7,10 @@
 #define ERROR 0
 #define TRUE 1
 #define FALSE 0
-typedef int Status; /* Status 是函数的类型,其值是函数结果状态代码，如 OK 等 */
 #define MAXEDGE 20
 #define MAXVEX 20
 #define INFINITY 65535
+typedef int Status; /* Status 是函数的类型,其值是函数结果状态代码，如 OK 等 */
 typedef struct
 {
     int arc[MAXVEX][MAXVEX];
@@ -38,8 +38,8 @@ void CreateMGraph(MGraph *G)
             else
                 G->arc[i][j] = G->arc[j][i] = INFINITY;
         }
-    } G
-    ->arc[0][1]=10;
+    }
+    G->arc[0][1]=10;
     G->arc[0][5]=11;
     G->arc[1][2]=18;
     G->arc[1][8]=12;
@@ -105,6 +105,7 @@ int Find(int *parent, int f)
     }
     return f;
 }
+
 /* 生成最小生成树 */
 void MiniSpanTree_Kruskal(MGraph G)
 {
@@ -137,7 +138,7 @@ void MiniSpanTree_Kruskal(MGraph G)
         m = Find(parent,edges[i].end);
         if (n != m) /* 假如 n 与 m 不等，说明此边没有与现有的生成树形成环路 */
         {
-            parent[n] = m; /* 将此边的结尾顶点放入下标为起点的 parent 中。 */
+            parent[n] = m; /* 将此边的结尾顶点放入下标为起点的 parent 中。*/
             /* 表示此顶点已经在生成树集合中 */
             printf("(%d, %d) %d\n", edges[i].begin, edges[i].end, edges[i].weight);
         }

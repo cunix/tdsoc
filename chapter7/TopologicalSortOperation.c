@@ -53,8 +53,8 @@ void CreateMGraph(MGraph *G)/* 构件图 */
         {
             G->arc[i][j]=0;
         }
-    } G
-    ->arc[0][4]=1;
+    }
+    G->arc[0][4]=1;
     G->arc[0][5]=1;
     G->arc[0][11]=1;
     G->arc[1][2]=1;
@@ -124,7 +124,7 @@ Status TopologicalSort(GraphAdjList GL)
         for(e = GL->adjList[gettop].firstedge; e; e = e->next)
         {
             k=e->adjvex;
-            if( !(--GL->adjList[k].in) ) /* 将 i 号顶点的邻接点的入度减 1，如果减 1 后为 0，则入栈 */
+            if(!(--GL->adjList[k].in)) /* 将 i 号顶点的邻接点的入度减 1，如果减 1 后为 0，则入栈 */
                 stack[++top]=k;
         }
     }
